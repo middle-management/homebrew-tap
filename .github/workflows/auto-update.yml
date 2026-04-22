@@ -1,0 +1,53 @@
+name: auto-update-formulas
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    env:
+      BRANCH: auto-update/formulas
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bump versions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./bump-versions.sh
+
+      - name: Refill sha256
+        run: ./update-shas.sh
+
+      - name: Commit and open PR
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- Formula; then
+            echo "No formula changes."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -B "$BRANCH"
+          git add Formula
+          git commit -m "Auto-bump formulas to latest upstream releases"
+          git push --force-with-lease origin "$BRANCH"
+
+          if gh pr view "$BRANCH" --json state -q .state >/dev/null 2>&1; then
+            echo "PR already open, branch updated."
+          else
+            gh pr create \
+              --base  "${GITHUB_REF_NAME}" \
+              --head  "$BRANCH" \
+              --title "Auto-bump formulas" \
+              --body  "Nightly bump of formulas to their latest GitHub releases. SHAs recomputed via \`update-shas.sh\`."
+          fi
