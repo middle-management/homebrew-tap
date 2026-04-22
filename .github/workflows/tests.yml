@@ -32,7 +32,7 @@ jobs:
           restore-keys: ${{ matrix.os }}-rubygems-
 
       - name: Run brew style
-        run: brew style --tap "$GITHUB_REPOSITORY" .
+        run: brew style "$GITHUB_REPOSITORY"
 
       - name: Run brew test-bot (syntax only)
         run: brew test-bot --only-tap-syntax
