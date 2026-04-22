@@ -15,12 +15,12 @@ brew install middle-management/tap/<tool>
 
 | Formula | Description |
 | --- | --- |
-| `pgfmt` | PostgreSQL SQL formatter — also installs `pgfmt-lsp` (LSP server) |
-| `ace` | Append-only enCrypted Environment variables |
-| `otel-logger` | OpenTelemetry log forwarder |
-| `migratex` | Simple SQLite migration tool |
-| `kubepose` | Convert Compose files to Kubernetes manifests |
-| `mmmigrate` | Forward-only SQL migration tool — installs `mmmigrate-postgres`, `mmmigrate-mysql`, `mmmigrate-sqlite` side-by-side |
+| [`pgfmt`](https://github.com/middle-management/pgfmt) | PostgreSQL SQL formatter — also installs `pgfmt-lsp` (LSP server) |
+| [`ace`](https://github.com/middle-management/ace) | Append-only enCrypted Environment variables |
+| [`otel-logger`](https://github.com/middle-management/otel-logger) | OpenTelemetry log forwarder |
+| [`migratex`](https://github.com/middle-management/migratex) | Simple SQLite migration tool |
+| [`kubepose`](https://github.com/middle-management/kubepose) | Convert Compose files to Kubernetes manifests |
+| [`mmmigrate`](https://github.com/middle-management/mmmigrate) | Forward-only SQL migration tool — installs `mmmigrate-postgres`, `mmmigrate-mysql`, `mmmigrate-sqlite` side-by-side |
 
 `mmmigrate` is a single formula that installs three driver-specific binaries.
 Invoke the one that matches your database (`mmmigrate-postgres`,
