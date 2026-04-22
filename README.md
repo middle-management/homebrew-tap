@@ -21,6 +21,7 @@ brew install middle-management/tap/<tool>
 | [`migratex`](https://github.com/middle-management/migratex) | Simple SQLite migration tool |
 | [`kubepose`](https://github.com/middle-management/kubepose) | Convert Compose files to Kubernetes manifests |
 | [`mmmigrate`](https://github.com/middle-management/mmmigrate) | Forward-only SQL migration tool — installs `mmmigrate-postgres`, `mmmigrate-mysql`, `mmmigrate-sqlite` side-by-side |
+| [`httproxy`](https://github.com/middle-management/httproxy) | Simple path-based HTTP reverse proxy |
 
 `mmmigrate` is a single formula that installs three driver-specific binaries.
 Invoke the one that matches your database (`mmmigrate-postgres`,
