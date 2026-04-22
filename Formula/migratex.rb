@@ -34,7 +34,7 @@ class Migratex < Formula
   end
 
   test do
-    assert_predicate bin/"migratex", :exist?
+    assert_path_exists bin/"migratex"
     system bin/"migratex", "--help"
   end
 end

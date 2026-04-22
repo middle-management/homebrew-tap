@@ -34,7 +34,7 @@ class OtelLogger < Formula
   end
 
   test do
-    assert_predicate bin/"otel-logger", :exist?
+    assert_path_exists bin/"otel-logger"
     system bin/"otel-logger", "--help"
   end
 end

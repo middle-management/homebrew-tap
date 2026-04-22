@@ -34,7 +34,7 @@ class Kubepose < Formula
   end
 
   test do
-    assert_predicate bin/"kubepose", :exist?
+    assert_path_exists bin/"kubepose"
     system bin/"kubepose", "--help"
   end
 end

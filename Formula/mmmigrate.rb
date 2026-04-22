@@ -85,9 +85,9 @@ class Mmmigrate < Formula
   end
 
   test do
-    assert_predicate bin/"mmmigrate-postgres", :exist?
-    assert_predicate bin/"mmmigrate-mysql", :exist?
-    assert_predicate bin/"mmmigrate-sqlite", :exist?
+    assert_path_exists bin/"mmmigrate-postgres"
+    assert_path_exists bin/"mmmigrate-mysql"
+    assert_path_exists bin/"mmmigrate-sqlite"
     system bin/"mmmigrate-postgres", "--help"
     system bin/"mmmigrate-mysql", "--help"
     system bin/"mmmigrate-sqlite", "--help"

@@ -62,8 +62,8 @@ class Pgfmt < Formula
   end
 
   test do
-    assert_predicate bin/"pgfmt", :exist?
-    assert_predicate bin/"pgfmt-lsp", :exist?
+    assert_path_exists bin/"pgfmt"
+    assert_path_exists bin/"pgfmt-lsp"
     assert_match "pgfmt", shell_output("#{bin}/pgfmt --help 2>&1", 0..2)
   end
 end

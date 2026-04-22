@@ -34,7 +34,7 @@ class Ace < Formula
   end
 
   test do
-    assert_predicate bin/"ace", :exist?
+    assert_path_exists bin/"ace"
     system bin/"ace", "--help"
   end
 end
