@@ -7,7 +7,7 @@ cask "tailscreen" do
 
   url "https://github.com/middle-management/tailscreen/releases/download/v#{version}/Tailscreen-v#{version}-macOS.zip"
   name "Tailscreen"
-  desc "Stream a Mac's display to another Mac over Tailscale"
+  desc "Screen sharing over Tailscale"
   homepage "https://github.com/middle-management/tailscreen"
 
   depends_on macos: ">= :sequoia"

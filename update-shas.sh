@@ -13,6 +13,9 @@
 
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+AWK_SCRIPT="${SCRIPT_DIR}/update-shas.awk"
+
 if ! command -v curl >/dev/null
 then
   echo "curl is required" >&2
@@ -44,27 +47,8 @@ update_one() {
     return
   fi
 
-  # Pair the i-th url with the i-th REPLACE_ME_ sha256 in document order, so
-  # the logic works for both formula style (url before sha256) and cask style
-  # (sha256 before url). Two-pass: first pass collects URLs, second emits
-  # <url>\t<placeholder> for each REPLACE_ME_ line.
-  awk -v ver="${version}" '
-    NR == FNR {
-      if ($0 ~ /url "/) {
-        u = $0
-        sub(/.*url "/, "", u); sub(/".*/, "", u)
-        gsub(/#\{version\}/, ver, u)
-        urls[++url_count] = u
-      }
-      next
-    }
-    /sha256 "REPLACE_ME_/ {
-      sha_idx++
-      p = $0
-      sub(/.*sha256 "/, "", p); sub(/".*/, "", p)
-      print urls[sha_idx] "\t" p
-    }
-  ' "${formula}" "${formula}" | while IFS=$'\t' read -r url placeholder; do
+  # update-shas.awk emits <url>\t<placeholder> for each REPLACE_ME_ sha256.
+  awk -v ver="${version}" -f "${AWK_SCRIPT}" "${formula}" "${formula}" | while IFS=$'\t' read -r url placeholder; do
     [[ -z "${url}" || -z "${placeholder}" ]] && continue
     echo "   ${url}"
     tmp="$(mktemp)"
