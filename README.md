@@ -9,6 +9,7 @@ Works on both macOS and Linuxbrew (Intel and Apple Silicon / arm64).
 ```sh
 brew tap middle-management/tap
 brew install middle-management/tap/<tool>
+brew install --cask middle-management/tap/<app>
 ```
 
 ## Tools
@@ -22,6 +23,12 @@ brew install middle-management/tap/<tool>
 | [`kubepose`](https://github.com/middle-management/kubepose) | Convert Compose files to Kubernetes manifests |
 | [`mmmigrate`](https://github.com/middle-management/mmmigrate) | Forward-only SQL migration tool — installs `mmmigrate-postgres`, `mmmigrate-mysql`, `mmmigrate-sqlite` side-by-side |
 | [`httproxy`](https://github.com/middle-management/httproxy) | Simple path-based HTTP reverse proxy |
+
+## Casks (macOS apps)
+
+| Cask | Description |
+| --- | --- |
+| [`tailscreen`](https://github.com/middle-management/tailscreen) | Stream a Mac's display to another Mac over Tailscale (menubar app, requires macOS 15+) |
 
 `mmmigrate` is a single formula that installs three driver-specific binaries.
 Invoke the one that matches your database (`mmmigrate-postgres`,
