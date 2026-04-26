@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 # update-shas.sh — compute SHA256 for every release asset referenced by the
-# formulas in ./Formula and replace matching REPLACE_ME_<filename> placeholders
-# in-place.
+# formulas in ./Formula and casks in ./Casks, replacing matching
+# REPLACE_ME_<filename> placeholders in-place.
 #
 # Usage:
-#   ./update-shas.sh                # updates all formulas
-#   ./update-shas.sh Formula/ace.rb # updates one
+#   ./update-shas.sh                  # updates all formulas and casks
+#   ./update-shas.sh Formula/ace.rb   # updates one
+#   ./update-shas.sh Casks/foo.rb     # updates one
 #
 # Idempotent: already-filled sha256 values are left alone. Skips files whose
 # URLs 404 (useful for otlppgplan until binaries are published).
@@ -43,21 +44,27 @@ update_one() {
     return
   fi
 
-  # Find each `url "..."` line with its following `sha256 "REPLACE_ME_..."`.
-  # We process line-pairs via a small awk pass that emits <url>\t<placeholder>.
+  # Pair the i-th url with the i-th REPLACE_ME_ sha256 in document order, so
+  # the logic works for both formula style (url before sha256) and cask style
+  # (sha256 before url). Two-pass: first pass collects URLs, second emits
+  # <url>\t<placeholder> for each REPLACE_ME_ line.
   awk -v ver="${version}" '
-    /url "/ {
-      u = $0
-      sub(/.*url "/, "", u); sub(/".*/, "", u)
-      gsub(/#\{version\}/, ver, u)
-      last_url = u; next
+    NR == FNR {
+      if ($0 ~ /url "/) {
+        u = $0
+        sub(/.*url "/, "", u); sub(/".*/, "", u)
+        gsub(/#\{version\}/, ver, u)
+        urls[++url_count] = u
+      }
+      next
     }
     /sha256 "REPLACE_ME_/ {
+      sha_idx++
       p = $0
       sub(/.*sha256 "/, "", p); sub(/".*/, "", p)
-      print last_url "\t" p
+      print urls[sha_idx] "\t" p
     }
-  ' "${formula}" | while IFS=$'\t' read -r url placeholder; do
+  ' "${formula}" "${formula}" | while IFS=$'\t' read -r url placeholder; do
     [[ -z "${url}" || -z "${placeholder}" ]] && continue
     echo "   ${url}"
     tmp="$(mktemp)"
@@ -86,10 +93,10 @@ then
   for f in "$@"; do update_one "${f}"; done
 else
   shopt -s nullglob
-  for f in Formula/*.rb; do update_one "${f}"; done
+  for f in Formula/*.rb Casks/*.rb; do update_one "${f}"; done
 fi
 
-remaining="$(grep -l REPLACE_ME_ Formula/*.rb 2>/dev/null || true)"
+remaining="$(grep -l REPLACE_ME_ Formula/*.rb Casks/*.rb 2>/dev/null || true)"
 if [[ -n "${remaining}" ]]
 then
   echo
