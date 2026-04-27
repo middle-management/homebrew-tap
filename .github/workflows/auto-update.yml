@@ -29,8 +29,8 @@ jobs:
       - name: Commit and open PR
         run: |
           set -euo pipefail
-          if git diff --quiet -- Formula; then
-            echo "No formula changes."
+          if git diff --quiet -- Formula Casks; then
+            echo "No formula or cask changes."
             exit 0
           fi
 
@@ -38,8 +38,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git checkout -B "$BRANCH"
-          git add Formula
-          git commit -m "Auto-bump formulas to latest upstream releases"
+          git add Formula Casks
+          git commit -m "Auto-bump formulas and casks to latest upstream releases"
           git push --force-with-lease origin "$BRANCH"
 
           if gh pr view "$BRANCH" --json state -q .state >/dev/null 2>&1; then
@@ -48,6 +48,6 @@ jobs:
             gh pr create \
               --base  "${GITHUB_REF_NAME}" \
               --head  "$BRANCH" \
-              --title "Auto-bump formulas" \
-              --body  "Nightly bump of formulas to their latest GitHub releases. SHAs recomputed via \`update-shas.sh\`."
+              --title "Auto-bump formulas and casks" \
+              --body  "Nightly bump of formulas and casks to their latest GitHub releases. SHAs recomputed via \`update-shas.sh\`."
           fi

@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# bump-versions.sh — check each formula's upstream GitHub repo for a newer
-# release and rewrite the formula's version + sha256 placeholders.
+# bump-versions.sh — check each formula/cask upstream GitHub repo for a newer
+# release and rewrite the file's version + sha256 placeholders.
 #
 # After this script runs, update-shas.sh fills in the real hashes.
 #
 # Usage:
-#   ./bump-versions.sh                # scan all formulas
-#   ./bump-versions.sh Formula/ace.rb # scan one
+#   ./bump-versions.sh                  # scan all formulas and casks
+#   ./bump-versions.sh Formula/ace.rb   # scan one
+#   ./bump-versions.sh Casks/foo.rb     # scan one
 #
 # Requires: curl, awk, sed. Optional: GITHUB_TOKEN env var to avoid rate limits.
 
@@ -83,7 +84,7 @@ bump_one() {
 
   local tmp
   tmp="$(mktemp)"
-  awk -v ver="${latest}" -f "${AWK_SCRIPT}" "${formula}" >"${tmp}"
+  awk -v ver="${latest}" -f "${AWK_SCRIPT}" "${formula}" "${formula}" >"${tmp}"
   mv "${tmp}" "${formula}"
 
   echo "   bumped to ${latest}"
@@ -94,5 +95,5 @@ then
   for f in "$@"; do bump_one "${f}"; done
 else
   shopt -s nullglob
-  for f in Formula/*.rb; do bump_one "${f}"; done
+  for f in Formula/*.rb Casks/*.rb; do bump_one "${f}"; done
 fi
