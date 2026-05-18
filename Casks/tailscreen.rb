@@ -10,7 +10,7 @@ cask "tailscreen" do
   desc "Screen sharing over Tailscale"
   homepage "https://github.com/middle-management/tailscreen"
 
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
 
   app "Tailscreen.app"
 
