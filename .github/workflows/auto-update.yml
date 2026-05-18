@@ -43,8 +43,9 @@ jobs:
           git commit -m "Auto-bump formulas and casks to latest upstream releases"
           git push --force-with-lease origin "$BRANCH"
 
-          if gh pr view "$BRANCH" --json state -q .state >/dev/null 2>&1; then
-            echo "PR already open, branch updated."
+          existing=$(gh pr list --head "$BRANCH" --state open --json number -q '.[0].number')
+          if [ -n "$existing" ]; then
+            echo "PR #$existing already open, branch updated."
           else
             gh pr create \
               --base  "${GITHUB_REF_NAME}" \
