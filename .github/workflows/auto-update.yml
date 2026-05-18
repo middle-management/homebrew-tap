@@ -29,20 +29,30 @@ jobs:
       - name: Commit and open PR
         run: |
           set -euo pipefail
+
+          echo "::group::Detect changes"
           if git diff --quiet -- Formula Casks; then
             echo "No formula or cask changes."
+            echo "::endgroup::"
             exit 0
           fi
+          git diff --stat -- Formula Casks
+          echo "::endgroup::"
 
+          echo "::group::Configure git identity"
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo "::endgroup::"
 
+          echo "::group::Push branch $BRANCH"
           git fetch origin "$BRANCH" || true
           git checkout -B "$BRANCH"
           git add Formula Casks
           git commit -m "Auto-bump formulas and casks to latest upstream releases"
           git push --force-with-lease origin "$BRANCH"
+          echo "::endgroup::"
 
+          echo "::group::Open or update pull request"
           existing=$(gh pr list --head "$BRANCH" --state open --json number -q '.[0].number')
           if [ -n "$existing" ]; then
             echo "PR #$existing already open, branch updated."
@@ -53,3 +63,4 @@ jobs:
               --title "Auto-bump formulas and casks" \
               --body  "Nightly bump of formulas and casks to their latest GitHub releases. SHAs recomputed via \`update-shas.sh\`."
           fi
+          echo "::endgroup::"
