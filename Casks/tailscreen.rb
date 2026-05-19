@@ -2,8 +2,8 @@
 # frozen_string_literal: true
 
 cask "tailscreen" do
-  version "0.6.2"
-  sha256 "130290dff9f14a77ad9fcb4d12f1caf3411c414df35ec5eb423c190a5ed3ed92"
+  version "0.7.0"
+  sha256 "03ad7dd974e0d2885a7a1f7e281b1e9fa1d5ae346124d22ddb7a93aef71d5002"
 
   url "https://github.com/middle-management/tailscreen/releases/download/v#{version}/Tailscreen-v#{version}-macOS.zip"
   name "Tailscreen"
