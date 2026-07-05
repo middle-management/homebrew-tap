@@ -8,28 +8,28 @@
 class Pgfmt < Formula
   desc "PostgreSQL SQL formatter (with bundled LSP server)"
   homepage "https://github.com/middle-management/pgfmt"
-  version "0.3.3"
+  version "0.4.0"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/middle-management/pgfmt/releases/download/v#{version}/pgfmt-darwin-arm64"
-      sha256 "92993d7c08118ec9b2d8c3b22b358f0870b694ce20fb0fc6307f1270ac2322b7"
+      sha256 "5cc5ad6049a820d5760266b932dcc21cf89adb0d115a93dde3451f47a31ce55d"
 
       resource "lsp" do
-        version "0.3.3"
+        version "0.4.0"
         url "https://github.com/middle-management/pgfmt/releases/download/v#{version}/pgfmt-lsp-darwin-arm64"
-        sha256 "762b17fc7eb92e68fc91e98c99249828d0078720e3552a2f4bb44ad2d19cd209"
+        sha256 "10a50cbd605927bdbd6a4d755812bc3968158335c4d6f11f005c6c16dc58e702"
       end
     end
     on_intel do
       url "https://github.com/middle-management/pgfmt/releases/download/v#{version}/pgfmt-darwin-amd64"
-      sha256 "b96e7b79a44ba76c8e2117fa6b7ce219302c051fe5ea94f48b42a4931b8b66f7"
+      sha256 "ff8e9190070024f124eb79ce921d3a8677852d0ae7ddb4962339bbdda3c9bb72"
 
       resource "lsp" do
-        version "0.3.3"
+        version "0.4.0"
         url "https://github.com/middle-management/pgfmt/releases/download/v#{version}/pgfmt-lsp-darwin-amd64"
-        sha256 "0fabe17667631fd0767010e13ab27d232adf3ffd73f5b3f5e92536f0c24ccd84"
+        sha256 "bcbdd3be994477eb7df73775bbc85eb8f12eb85b78531c0937960e4f797613dd"
       end
     end
   end
@@ -37,22 +37,22 @@ class Pgfmt < Formula
   on_linux do
     on_arm do
       url "https://github.com/middle-management/pgfmt/releases/download/v#{version}/pgfmt-linux-arm64"
-      sha256 "483286d7a0e0403299794ca07f36eb49167f250f32d7a8e43f7ccc5b85ceb099"
+      sha256 "a41715200370fe94e93a2442a4433005a6485aa73b7297ed86d0acf3a08e6c49"
 
       resource "lsp" do
-        version "0.3.3"
+        version "0.4.0"
         url "https://github.com/middle-management/pgfmt/releases/download/v#{version}/pgfmt-lsp-linux-arm64"
-        sha256 "a71e20c21f3e43723ef11b53add0066f365cbbe516fb979e42758e7876b1ee26"
+        sha256 "981e52877f4830f889ae7759ae41b31b00057e2e505f40ef04bf28ff4cc2266a"
       end
     end
     on_intel do
       url "https://github.com/middle-management/pgfmt/releases/download/v#{version}/pgfmt-linux-amd64"
-      sha256 "a649696431b0f892be4aba373d8365aea8ecb3897896df7cc6978eaafbec1fd5"
+      sha256 "3ac7bfba3890d9a4bf22187b349775798f8ddba4dc10d27720483cff06bfca04"
 
       resource "lsp" do
-        version "0.3.3"
+        version "0.4.0"
         url "https://github.com/middle-management/pgfmt/releases/download/v#{version}/pgfmt-lsp-linux-amd64"
-        sha256 "7f194b772cee6f6342856838676ddac1ea06bc1e50c8e7e16feaffa1029db8bc"
+        sha256 "cbcaf73d40ab981f586f089de479f7756ac1140ec6cbb3e5e1104104130e7352"
       end
     end
   end
