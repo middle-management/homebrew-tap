@@ -23,12 +23,22 @@ brew install --cask middle-management/tap/<app>
 | [`kubepose`](https://github.com/middle-management/kubepose) | Convert Compose files to Kubernetes manifests |
 | [`mmmigrate`](https://github.com/middle-management/mmmigrate) | Forward-only SQL migration tool — installs `mmmigrate-postgres`, `mmmigrate-mysql`, `mmmigrate-sqlite` side-by-side |
 | [`httproxy`](https://github.com/middle-management/httproxy) | Simple path-based HTTP reverse proxy |
+| [`tailscreen-linux`](https://github.com/middle-management/tailscreen) | Share and view screens peer-to-peer over Tailscale — the **Linux** desktop app (x86_64 AppImage) |
 
 ## Casks (macOS apps)
 
 | Cask | Description |
 | --- | --- |
 | [`tailscreen`](https://github.com/middle-management/tailscreen) | Stream a Mac's display to another Mac over Tailscale (menubar app, requires macOS 15+) |
+
+Tailscreen appears twice on purpose: `tailscreen` (cask) is the macOS app and
+`tailscreen-linux` (formula) is the Linux one. They can't share a name —
+Homebrew prefers a formula over a cask of the same name, so a formula called
+`tailscreen` would change what `brew install middle-management/tap/tailscreen`
+installs on a Mac. Note also that Homebrew registers no `.desktop` entry, so on
+Linux the app won't show up in the application launcher; the AppImage or (later)
+the Flatpak from the project's releases is the better route for desktop
+integration.
 
 `mmmigrate` is a single formula that installs three driver-specific binaries.
 Invoke the one that matches your database (`mmmigrate-postgres`,
