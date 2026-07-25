@@ -40,21 +40,28 @@ bump_one() {
   local formula="$1"
   echo "==> ${formula}"
 
-  local homepage
-  homepage="$(awk -F'"' '/^[[:space:]]*homepage "/ {print $2; exit}' "${formula}")"
-  if [[ -z "${homepage}" ]]
-  then
-    echo "   no homepage, skipping" >&2
-    return
-  fi
-  if [[ "${homepage}" != https://github.com/* ]]
-  then
-    echo "   homepage not github, skipping" >&2
-    return
-  fi
-
+  # An explicit `# upstream: owner/repo` comment wins, so a recipe whose
+  # homepage is a project domain rather than its repo can still be bumped.
+  # Otherwise fall back to a github.com homepage.
   local repo
-  repo="${homepage#https://github.com/}"
+  repo="$(awk '/^[[:space:]]*#[[:space:]]*upstream:[[:space:]]*/ {sub(/.*upstream:[[:space:]]*/, ""); sub(/[[:space:]]*$/, ""); print; exit}' "${formula}")"
+
+  if [[ -z "${repo}" ]]
+  then
+    local homepage
+    homepage="$(awk -F'"' '/^[[:space:]]*homepage "/ {print $2; exit}' "${formula}")"
+    if [[ -z "${homepage}" ]]
+    then
+      echo "   no homepage and no '# upstream:' hint, skipping" >&2
+      return
+    fi
+    if [[ "${homepage}" != https://github.com/* ]]
+    then
+      echo "   homepage not github and no '# upstream: owner/repo' hint, skipping" >&2
+      return
+    fi
+    repo="${homepage#https://github.com/}"
+  fi
   repo="${repo%/}"
 
   local current latest

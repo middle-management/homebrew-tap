@@ -24,11 +24,22 @@ brew install --cask middle-management/tap/<app>
 | [`mmmigrate`](https://github.com/middle-management/mmmigrate) | Forward-only SQL migration tool — installs `mmmigrate-postgres`, `mmmigrate-mysql`, `mmmigrate-sqlite` side-by-side |
 | [`httproxy`](https://github.com/middle-management/httproxy) | Simple path-based HTTP reverse proxy |
 
-## Casks (macOS apps)
+## Casks (desktop apps)
 
 | Cask | Description |
 | --- | --- |
-| [`tailscreen`](https://github.com/middle-management/tailscreen) | Stream a Mac's display to another Mac over Tailscale (menubar app, requires macOS 15+) |
+| [`tailscreen`](https://tailscreen.dev) | Screen sharing over Tailscale — the macOS menubar app (requires macOS 15+) and the Linux desktop app (x86_64 AppImage) from one cask |
+
+`tailscreen` is one cask covering both platforms: `on_macos` installs the
+notarized `.app` from the release zip, `on_linux` links the release AppImage
+through the `appimage` stanza. So `brew install --cask middle-management/tap/tailscreen`
+is the same command everywhere and resolves to the right artifact.
+
+Two caveats on Linux. The AppImage needs FUSE to self-mount (install your
+distro's `fuse`/`libfuse2`, or run with `APPIMAGE_EXTRACT_AND_RUN=1`), and
+Homebrew registers no `.desktop` entry, so the app won't appear in the
+application launcher — for that, use the AppImage directly with a desktop
+integration tool, or the Flatpak once it's published.
 
 `mmmigrate` is a single formula that installs three driver-specific binaries.
 Invoke the one that matches your database (`mmmigrate-postgres`,
@@ -48,6 +59,12 @@ Invoke the one that matches your database (`mmmigrate-postgres`,
 
 3. Commit and push — the CI workflow in `.github/workflows/tests.yml` runs
    `brew test-bot --only-tap-syntax` on every push and PR.
+
+`bump-versions.sh` finds each recipe's upstream repo from its `homepage` when
+that points at github.com. When it doesn't — a recipe whose homepage is a
+project domain, like Tailscreen's `tailscreen.dev` — add a
+`# upstream: owner/repo` comment to the file and the bumper will use that
+instead.
 
 ## Publishing
 
