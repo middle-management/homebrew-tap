@@ -16,7 +16,7 @@ cask "tailscreen" do
 
   name "Tailscreen"
   desc "Screen sharing over Tailscale"
-  homepage "https://tailscreen.dev"
+  homepage "https://tailscreen.dev/"
 
   on_macos do
     sha256 "7badffe81a9f5ff0c2397b738bce84f2a42ea7bcf2b98228dad3396deafbb5a9"
