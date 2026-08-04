@@ -28,7 +28,7 @@ brew install --cask middle-management/tap/<app>
 
 | Cask | Description |
 | --- | --- |
-| [`tailscreen`](https://github.com/middle-management/tailscreen) | Stream a Mac's display to another Mac over Tailscale (menubar app, requires macOS 15+) |
+| [`tailscreen`](https://github.com/middle-management/tailscreen) | Encrypted P2P screen sharing over Tailscale — the cask installs the macOS app (macOS 15+); Linux and Windows builds live on the [GitHub releases](https://github.com/middle-management/tailscreen/releases) |
 
 `mmmigrate` is a single formula that installs three driver-specific binaries.
 Invoke the one that matches your database (`mmmigrate-postgres`,
