@@ -4,28 +4,28 @@
 class Ace < Formula
   desc "Append-only enCrypted Environment variables"
   homepage "https://github.com/middle-management/ace"
-  version "0.7.1"
+  version "0.7.3"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/middle-management/ace/releases/download/v#{version}/ace-darwin-arm64"
-      sha256 "0857542fd54838a5fad6b9d8825f4ff3b2e48ba1df786918e477902c9add59aa"
+      sha256 "1064b24f15157eb2cf32f22d8025ba2890a8cdc37173c5674f912fcf6f152213"
     end
     on_intel do
       url "https://github.com/middle-management/ace/releases/download/v#{version}/ace-darwin-amd64"
-      sha256 "49fc75046ad01bb93b56060a5a4583a83264ccc706f33191ae0a6d700177e2ca"
+      sha256 "667f745265270abb2c847fa6743e2b028445436d2307bdc019a2b5e09bb3b63f"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/middle-management/ace/releases/download/v#{version}/ace-linux-arm64"
-      sha256 "e7a28de44fe43d788d2564d0ab668973aececfbd72471b71f78fd5e9cec6eda6"
+      sha256 "fec67f61da22a08843c06873bca724a9f3946e57cef7665aa8b5786472822d25"
     end
     on_intel do
       url "https://github.com/middle-management/ace/releases/download/v#{version}/ace-linux-amd64"
-      sha256 "51d2a92ddc9a34f8d3584253326253cc0bc5dd6e7f5cb92eb6c86298cd332a24"
+      sha256 "4a4b15266ad3893213174e944750cff3ea091e06cd9d5729977a7fe8aea948c8"
     end
   end
 
