@@ -4,28 +4,28 @@
 class Kubepose < Formula
   desc "Convert Compose specification files to Kubernetes manifests"
   homepage "https://github.com/middle-management/kubepose"
-  version "0.8.0"
+  version "0.8.2"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/middle-management/kubepose/releases/download/v#{version}/kubepose-darwin-arm64"
-      sha256 "2df8b111268b2ea03b0c9ac233bd17cd6b9f902f70bca09c58ca01347511696b"
+      sha256 "dd8e33c8379b4233cc2797e0702e2ebd2bf6822b25eca1ac9f938f08586a9df3"
     end
     on_intel do
       url "https://github.com/middle-management/kubepose/releases/download/v#{version}/kubepose-darwin-amd64"
-      sha256 "91f54f1365ae35081f6b2fdb83b834e609f080189af4038b5561bb8d8febcc54"
+      sha256 "72b6beda404af927425d658f6c7caad9d1f4e7217ec893f8be8f2686f17696fd"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/middle-management/kubepose/releases/download/v#{version}/kubepose-linux-arm64"
-      sha256 "1f4c3d5e306cbad27aef3abc77d5a0ffab3f5743e3e7199b9e0f167dcb0dc5ed"
+      sha256 "8739187e53a7f0dc48905809b8d80a81760a133b8ed26bb76cb37fd0253acec9"
     end
     on_intel do
       url "https://github.com/middle-management/kubepose/releases/download/v#{version}/kubepose-linux-amd64"
-      sha256 "8b88d8e4bf211e570612c49d7d922c7ba2e76c08c4da970189222f28a41bbaee"
+      sha256 "ac80d4f56cb1d62c84e5b6d079a4a036c27688be105b3ed6b2e5841e41664e33"
     end
   end
 
