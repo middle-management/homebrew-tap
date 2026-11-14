@@ -8,40 +8,40 @@
 class Mmmigrate < Formula
   desc "Forward-only SQL migration tool (postgres, mysql, sqlite variants)"
   homepage "https://github.com/middle-management/mmmigrate"
-  version "0.5.2"
+  version "0.7.0"
   license "MIT"
 
   on_macos do
     on_arm do
       url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-postgres-darwin-arm64"
-      sha256 "1619d748d99d88aefc52ddcca1bf779e99821ac9d093cec2a58637d4f23ac1dd"
+      sha256 "abbc7ffc8b6e7248a7df3b129361bf8665340b94c33e985d6fb2ffad16b06f5c"
 
       resource "mysql" do
-        version "0.5.2"
+        version "0.7.0"
         url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-mysql-darwin-arm64"
-        sha256 "f05dc46015f0d7eb3d8bc5685827db9beb736682d469dd18e978b3bbcd4b87be"
+        sha256 "c83e705dcb42ecb51c8f8c327db63717b60d700342f0c3e5b26918a35087d8fc"
       end
 
       resource "sqlite" do
-        version "0.5.2"
+        version "0.7.0"
         url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-sqlite-darwin-arm64"
-        sha256 "40c7aa9335d58674e8403ed76429485ed8b3d948bc42749aac4a08b0a040b362"
+        sha256 "06f9f796f1910c7085fa46cbdf7ccb2aab45e026f1be1d674f4848d5f8f78d74"
       end
     end
     on_intel do
       url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-postgres-darwin-amd64"
-      sha256 "eb4420cf4c54657df870b1ab6ff1a675d1e4e348c287442e50cec9e63aaa0f1c"
+      sha256 "743bb46e87c56ab58b5f28ffb48bc232f1653431f1f7455c1bf16369592f0815"
 
       resource "mysql" do
-        version "0.5.2"
+        version "0.7.0"
         url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-mysql-darwin-amd64"
-        sha256 "cdccd26474a5c2bdbaa4d1462968d880d1b6e930477a2de7d695759054e0717d"
+        sha256 "28ca794e1c0272bd2b584f767063e0816f1317b1e476f51c325f4ff60a9dfb23"
       end
 
       resource "sqlite" do
-        version "0.5.2"
+        version "0.7.0"
         url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-sqlite-darwin-amd64"
-        sha256 "d1217f2eeda88cd51900f6e85e8a2348bd4252b2189ce51d0d7ee4f42c898237"
+        sha256 "c2dd0bc264f7f59116f26755346d9c25418ecc6d3be25aca154ac42bf54c8948"
       end
     end
   end
@@ -49,34 +49,34 @@ class Mmmigrate < Formula
   on_linux do
     on_arm do
       url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-postgres-linux-arm64"
-      sha256 "96fda6e202c37c9175cb5942ecf91e698b936c800c7038f2fbb46b8dd8fdec20"
+      sha256 "4b8f3951b388430f7179297b14b83ad4e9408f6fbfaa736615ecd872ee7c9cad"
 
       resource "mysql" do
-        version "0.5.2"
+        version "0.7.0"
         url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-mysql-linux-arm64"
-        sha256 "fb8032c900965697b9f6e338e1b1eb855966cd6248b5589a30a979b9186a39e4"
+        sha256 "6288577c25947b4016c736ba52b559ee22ef4b1746db2bab02e5d18bc37652d3"
       end
 
       resource "sqlite" do
-        version "0.5.2"
+        version "0.7.0"
         url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-sqlite-linux-arm64"
-        sha256 "b4e21ff7207a491b41db57038b133b948dfd19cbeffb7058f60de3284b44e31e"
+        sha256 "deebdb6444a8d78043f53ffa338b2df286b96f6d782e0e4a314ba4d128c492d2"
       end
     end
     on_intel do
       url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-postgres-linux-amd64"
-      sha256 "de41960b2c81b77f1f4bd54048a3ef47c7b0944c81e84f7a3a70ad4a2b84f57b"
+      sha256 "345a981503267c4c40d76e86774f7c4437f70c3f221b748f33f8e511ec5abe04"
 
       resource "mysql" do
-        version "0.5.2"
+        version "0.7.0"
         url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-mysql-linux-amd64"
-        sha256 "2d6facb15cdff630451cd9316ec560d45e8e963e3ac1def333ea7d3b17788e8e"
+        sha256 "fff3b3d68fd23539a7b54841a1331ed02483838478a8267a824d6e7f50ef2ad4"
       end
 
       resource "sqlite" do
-        version "0.5.2"
+        version "0.7.0"
         url "https://github.com/middle-management/mmmigrate/releases/download/v#{version}/mmmigrate-sqlite-linux-amd64"
-        sha256 "17389720bd63bf2a2ee7e284bb219993bb98a302364abf0b7941c5e108a20144"
+        sha256 "0da3f99b97041b6405a75beb144746ecbb18d966670ab53640b9a65e689402c3"
       end
     end
   end
